@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>S·K·Y — Напрямки практики (Послуги)</title>
+
+  <!-- Google Fonts: Cormorant Garamond & Inter with Cyrillic subset -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="services-page-body">
+
+  <div class="services-stage">
+
+    <!-- Background plate 06_screen_services.png -->
+    <div class="services-bg-layer" aria-hidden="true">
+      <img src="./img/06_screen_services.png" alt="" class="services-bg-img">
+    </div>
+
+    <!-- Header bar with small back control and language switcher -->
+    <header class="services-header" role="banner">
+      <div class="services-nav-left">
+        <a href="./index.html" class="services-back-btn" id="servicesBackBtn" aria-label="Повернутися на головну">
+          <span class="services-back-text" id="txtServicesBack">← Назад</span>
+        </a>
+      </div>
+
+      <!-- Language Switcher -->
+      <nav class="lang-nav" aria-label="Вибір мови">
+        <button type="button" class="lang-btn is-active" data-lang="uk" aria-label="Українська" aria-pressed="true">UK</button>
+        <button type="button" class="lang-btn" data-lang="es" aria-label="Español" aria-pressed="false">ES</button>
+        <button type="button" class="lang-btn" data-lang="en" aria-label="English" aria-pressed="false">EN</button>
+        <button type="button" class="lang-btn" data-lang="ru" aria-label="Русский" aria-pressed="false">RU</button>
+      </nav>
+    </header>
+
+    <!-- Main Container over the 4 cascading glass cards -->
+    <main class="services-cards-grid" role="main" aria-label="Каталог зон практики">
+
+      <!-- Card 1: Процедури (Active state: filled #A9683F button with cream arrow) -->
+      <a href="./procedures.html" class="service-card-link service-card-link--1 is-active" aria-label="Зона 1: Процедури">
+        <span class="service-card-title" id="txtServicesCard1">Процедури</span>
+        <span class="service-card-btn service-card-btn--active" aria-hidden="true">
+          <span class="service-btn-arrow">→</span>
+        </span>
+      </a>
+
+      <!-- Card 2: Виїзд (Circular outline button with right arrow) -->
+      <a href="./outcall.html" class="service-card-link service-card-link--2" aria-label="Зона 2: Виїзд">
+        <span class="service-card-title" id="txtServicesCard2">Виїзд</span>
+        <span class="service-card-btn service-card-btn--outline" aria-hidden="true">
+          <span class="service-btn-arrow">→</span>
+        </span>
+      </a>
+
+      <!-- Card 3: Ін'єкції (Circular outline button with right arrow) -->
+      <a href="./injectables.html" class="service-card-link service-card-link--3" aria-label="Зона 3: Ін'єкції">
+        <span class="service-card-title" id="txtServicesCard3">Ін'єкції</span>
+        <span class="service-card-btn service-card-btn--outline" aria-hidden="true">
+          <span class="service-btn-arrow">→</span>
+        </span>
+      </a>
+
+      <!-- Card 4: Догляд (Circular outline button with right arrow) -->
+      <a href="./skincare.html" class="service-card-link service-card-link--4" aria-label="Зона 4: Догляд">
+        <span class="service-card-title" id="txtServicesCard4">Догляд</span>
+        <span class="service-card-btn service-card-btn--outline" aria-hidden="true">
+          <span class="service-btn-arrow">→</span>
+        </span>
+      </a>
+
+    </main>
+
+  </div>
+
+  <script src="./main.js"></script>
+</body>
+</html>

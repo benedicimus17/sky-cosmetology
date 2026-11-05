@@ -1,12 +1,11 @@
 /**
- * S·K·Y (Skin Keeps Youth) — Hero Scroll-Driven Reveal Engine
+ * S·K·Y (Skin Keeps Youth) — Engine & Interactions
  * Features:
- * - GSAP 3.12.5 + ScrollTrigger pinned CDN integration
- * - Scroll progress 0.00 to 1.00 across 300vh hero
- * - Synchronized clip-path strip reveal with dual cream edge lines
- * - Transform and opacity animations exclusively
- * - Full i18n support (UK default, ES, EN, RU) loaded from i18n.json
- * - Strict prefers-reduced-motion support
+ * - GSAP 3.12.5 + ScrollTrigger pinned CDN integration for hero reveal
+ * - All 5 home sections and services screen copy dynamically driven by i18n.json
+ * - Language switcher (UK default, ES, EN, RU) with persistent state & TODO visibility
+ * - Both hero CTA and Section 5 CTA open services.html
+ * - Full prefers-reduced-motion support
  */
 
 (function () {
@@ -20,66 +19,171 @@
       "descriptor": "КЛАСИЧНА ТА АПАРАТНА КОСМЕТОЛОГІЯ",
       "slogan_line1": "МОЛОДІСТЬ ПОЧИНАЄТЬСЯ",
       "slogan_line2": "ЗІ ШКІРИ",
-      "cta": "Обрати процедуру"
+      "cta": "Обрати процедуру",
+      "about_label": "ХТО МИ",
+      "about_name": "МАРІЯ СТЕФАНЮК",
+      "about_role": "КОСМЕТОЛОГ",
+      "about_body": "S.K.Y. — приватна практика естетичної косметології на узбережжі Коста-дель-Соль. Без потоку. Один клієнт — один час. Кожен протокол збирається під конкретну шкіру, а не під прайс.",
+      "about_chip": "СЕРТИФІКАЦІЯ FDA",
+      "equip_label": "НА ЧОМУ ПРАЦЮЄМО",
+      "equip_lead": "Амбасадор Zemits в Іспанії",
+      "equip_item1": "ZEMITS VERSTAND HD PRO — станція 8 в 1 для догляду за обличчям",
+      "equip_item2": "ZEMITS ABIGON PRO — професійна корекція фігури",
+      "equip_item3": "ZEMITS SKYFRAX PRO — мікроголковий RF-ліфтинг",
+      "proto_label": "ПРОФЕСІЙНІ ПРОТОКОЛИ",
+      "proto_body": "Працюємо з тим, чого немає у вільному продажу: професійні пілінги, протоколи корекції мелазми та пігментації, курси під конкретну проблему шкіри.",
+      "how_label": "ЯК ЦЕ ПРАЦЮЄ",
+      "how_n1": "01",
+      "how_t1": "ДІАГНОСТИКА",
+      "how_d1": "Розбираємо стан шкіри, спосіб життя і те, чим ви користуєтесь зараз.",
+      "how_n2": "02",
+      "how_t2": "ПРОТОКОЛ",
+      "how_d2": "Складаємо курс: що робимо в кабінеті, що ви робите вдома, у якій послідовності й скільки це займе.",
+      "how_n3": "03",
+      "how_t3": "СУПРОВІД",
+      "how_d3": "Лишаємось на зв'язку між візитами. Коригуємо догляд, коли шкіра змінюється — сезон, перельоти, сонце.",
+      "how_langs": "Українська · Español · English · Русский",
+      "how_cta": "Обрати процедуру",
+      "services_back": "← Назад",
+      "services_card1": "Процедури",
+      "services_card2": "Виїзд",
+      "services_card3": "Ін'єкції",
+      "services_card4": "Догляд"
     },
     "es": {
       "wordmark": "S·K·Y",
-      "tagline": "LA JUVENTUD DE TU PIEL",
-      "descriptor": "COSMETOLOGÍA CLÁSICA Y APARATOLOGÍA",
-      "slogan_line1": "LA JUVENTUD COMIENZA",
-      "slogan_line2": "EN LA PIEL",
-      "cta": "Elegir tratamiento"
+      "tagline": "TODO ЗБЕРЕЖЕННЯ МОЛОДОСТІ ШКІРИ",
+      "descriptor": "TODO КЛАСИЧНА ТА АПАРАТНА КОСМЕТОЛОГІЯ",
+      "slogan_line1": "TODO МОЛОДІСТЬ ПОЧИНАЄТЬСЯ",
+      "slogan_line2": "TODO ЗІ ШКІРИ",
+      "cta": "TODO Обрати процедуру",
+      "about_label": "TODO ХТО МИ",
+      "about_name": "TODO МАРІЯ СТЕФАНЮК",
+      "about_role": "TODO КОСМЕТОЛОГ",
+      "about_body": "TODO S.K.Y. — приватна практика естетичної косметології на узбережжі Коста-дель-Соль. Без потоку. Один клієнт — один час. Кожен протокол збирається під конкретну шкіру, а не під прайс.",
+      "about_chip": "TODO СЕРТИФІКАЦІЯ FDA",
+      "equip_label": "TODO НА ЧОМУ ПРАЦЮЄМО",
+      "equip_lead": "TODO Амбасадор Zemits в Іспанії",
+      "equip_item1": "TODO ZEMITS VERSTAND HD PRO — станція 8 в 1 для догляду за обличчям",
+      "equip_item2": "TODO ZEMITS ABIGON PRO — професійна корекція фігури",
+      "equip_item3": "TODO ZEMITS SKYFRAX PRO — мікроголковий RF-ліфтинг",
+      "proto_label": "TODO ПРОФЕСІЙНІ ПРОТОКОЛИ",
+      "proto_body": "TODO Працюємо з тим, чого немає у вільному продажу: професійні пілінги, протоколи корекції мелазми та пігментації, курси під конкретну проблему шкіри.",
+      "how_label": "TODO ЯК ЦЕ ПРАЦЮЄ",
+      "how_n1": "TODO 01",
+      "how_t1": "TODO ДІАГНОСТИКА",
+      "how_d1": "TODO Розбираємо стан шкіри, спосіб життя і те, чим ви користуєтесь зараз.",
+      "how_n2": "TODO 02",
+      "how_t2": "TODO ПРОТОКОЛ",
+      "how_d2": "TODO Складаємо курс: що робимо в кабінеті, що ви робите вдома, у якій послідовності й скільки це займе.",
+      "how_n3": "TODO 03",
+      "how_t3": "TODO СУПРОВІД",
+      "how_d3": "TODO Лишаємось на зв'язку між візитами. Коригуємо догляд, коли шкіра змінюється — сезон, перельоти, сонце.",
+      "how_langs": "TODO Українська · Español · English · Русский",
+      "how_cta": "TODO Обрати процедуру",
+      "services_back": "TODO ← Назад",
+      "services_card1": "TODO Процедури",
+      "services_card2": "TODO Виїзд",
+      "services_card3": "TODO Ін'єкції",
+      "services_card4": "TODO Догляд"
     },
     "en": {
       "wordmark": "S·K·Y",
-      "tagline": "SKIN KEEPS YOUTH",
-      "descriptor": "CLASSICAL & CLINICAL AESTHETICS",
-      "slogan_line1": "YOUTH BEGINS",
-      "slogan_line2": "WITH YOUR SKIN",
-      "cta": "Select treatment"
+      "tagline": "TODO ЗБЕРЕЖЕННЯ МОЛОДОСТІ ШКІРИ",
+      "descriptor": "TODO КЛАСИЧНА ТА АПАРАТНА КОСМЕТОЛОГІЯ",
+      "slogan_line1": "TODO МОЛОДІСТЬ ПОЧИНАЄТЬСЯ",
+      "slogan_line2": "TODO ЗІ ШКІРИ",
+      "cta": "TODO Обрати процедуру",
+      "about_label": "TODO ХТО МИ",
+      "about_name": "TODO МАРІЯ СТЕФАНЮК",
+      "about_role": "TODO КОСМЕТОЛОГ",
+      "about_body": "TODO S.K.Y. — приватна практика естетичної косметології на узбережжі Коста-дель-Соль. Без потоку. Один клієнт — один час. Кожен протокол збирається під конкретну шкіру, а не під прайс.",
+      "about_chip": "TODO СЕРТИФІКАЦІЯ FDA",
+      "equip_label": "TODO НА ЧОМУ ПРАЦЮЄМО",
+      "equip_lead": "TODO Амбасадор Zemits в Іспанії",
+      "equip_item1": "TODO ZEMITS VERSTAND HD PRO — станція 8 в 1 для догляду за обличчям",
+      "equip_item2": "TODO ZEMITS ABIGON PRO — професійна корекція фігури",
+      "equip_item3": "TODO ZEMITS SKYFRAX PRO — мікроголковий RF-ліфтинг",
+      "proto_label": "TODO ПРОФЕСІЙНІ ПРОТОКОЛИ",
+      "proto_body": "TODO Працюємо з тим, чого немає у вільному продажу: професійні пілінги, протоколи корекції мелазми та пігментації, курси під конкретну проблему шкіри.",
+      "how_label": "TODO ЯК ЦЕ ПРАЦЮЄ",
+      "how_n1": "TODO 01",
+      "how_t1": "TODO ДІАГНОСТИКА",
+      "how_d1": "TODO Розбираємо стан шкіри, спосіб життя і те, чим ви користуєтесь зараз.",
+      "how_n2": "TODO 02",
+      "how_t2": "TODO ПРОТОКОЛ",
+      "how_d2": "TODO Складаємо курс: що робимо в кабінеті, що ви робите вдома, у якій послідовності й скільки це займе.",
+      "how_n3": "TODO 03",
+      "how_t3": "TODO СУПРОВІД",
+      "how_d3": "TODO Лишаємось на зв'язку між візитами. Коригуємо догляд, коли шкіра змінюється — сезон, перельоти, сонце.",
+      "how_langs": "TODO Українська · Español · English · Русский",
+      "how_cta": "TODO Обрати процедуру",
+      "services_back": "TODO ← Назад",
+      "services_card1": "TODO Процедури",
+      "services_card2": "TODO Виїзд",
+      "services_card3": "TODO Ін'єкції",
+      "services_card4": "TODO Догляд"
     },
     "ru": {
       "wordmark": "S·K·Y",
-      "tagline": "СОХРАНЕНИЕ МОЛОДОСТИ КОЖИ",
-      "descriptor": "КЛАССИЧЕСКАЯ И АППАРАТНАЯ КОСМЕТОЛОГИЯ",
-      "slogan_line1": "МОЛОДОСТЬ НАЧИНАЕТСЯ",
-      "slogan_line2": "С КОЖИ",
-      "cta": "Выбрать процедуру"
+      "tagline": "TODO ЗБЕРЕЖЕННЯ МОЛОДОСТІ ШКІРИ",
+      "descriptor": "TODO КЛАСИЧНА ТА АПАРАТНА КОСМЕТОЛОГІЯ",
+      "slogan_line1": "TODO МОЛОДІСТЬ ПОЧИНАЄТЬСЯ",
+      "slogan_line2": "TODO ЗІ ШКІРИ",
+      "cta": "TODO Обрати процедуру",
+      "about_label": "TODO ХТО МИ",
+      "about_name": "TODO МАРІЯ СТЕФАНЮК",
+      "about_role": "TODO КОСМЕТОЛОГ",
+      "about_body": "TODO S.K.Y. — приватна практика естетичної косметології на узбережжі Коста-дель-Соль. Без потоку. Один клієнт — один час. Кожен протокол збирається під конкретну шкіру, а не під прайс.",
+      "about_chip": "TODO СЕРТИФІКАЦІЯ FDA",
+      "equip_label": "TODO НА ЧОМУ ПРАЦЮЄМО",
+      "equip_lead": "TODO Амбасадор Zemits в Іспанії",
+      "equip_item1": "TODO ZEMITS VERSTAND HD PRO — станція 8 в 1 для догляду за обличчям",
+      "equip_item2": "TODO ZEMITS ABIGON PRO — професійна корекція фігури",
+      "equip_item3": "TODO ZEMITS SKYFRAX PRO — мікроголковий RF-ліфтинг",
+      "proto_label": "TODO ПРОФЕСІЙНІ ПРОТОКОЛИ",
+      "proto_body": "TODO Працюємо з тим, чого немає у вільному продажу: професійні пілінги, протоколи корекції мелазми та пігментації, курси під конкретну проблему шкіри.",
+      "how_label": "TODO ЯК ЦЕ ПРАЦЮЄ",
+      "how_n1": "TODO 01",
+      "how_t1": "TODO ДІАГНОСТИКА",
+      "how_d1": "TODO Розбираємо стан шкіри, спосіб життя і те, чим ви користуєтесь зараз.",
+      "how_n2": "TODO 02",
+      "how_t2": "TODO ПРОТОКОЛ",
+      "how_d2": "TODO Складаємо курс: що робимо в кабінеті, що ви робите вдома, у якій послідовності й скільки це займе.",
+      "how_n3": "TODO 03",
+      "how_t3": "TODO СУПРОВІД",
+      "how_d3": "TODO Лишаємось на зв'язку між візитами. Коригуємо догляд, коли шкіра змінюється — сезон, перельоти, сонце.",
+      "how_langs": "TODO Українська · Español · English · Русский",
+      "how_cta": "TODO Обрати процедуру",
+      "services_back": "TODO ← Назад",
+      "services_card1": "TODO Процедури",
+      "services_card2": "TODO Виїзд",
+      "services_card3": "TODO Ін'єкції",
+      "services_card4": "TODO Догляд"
     }
   };
 
   let translations = fallbackI18n;
   let currentLang = 'uk';
 
-  // DOM Elements
-  const heroScroll = document.getElementById('heroScroll');
-  const heroSticky = document.getElementById('heroSticky');
-  const layerB = document.getElementById('layerB');
-  const edgeLineLeft = document.getElementById('edgeLineLeft');
-  const edgeLineRight = document.getElementById('edgeLineRight');
-  const heroTextLayer = document.getElementById('heroTextLayer');
-  const heroCtaWrapper = document.getElementById('heroCtaWrapper');
-  const ctaBtn = document.getElementById('ctaBtn');
-
-  // Text Elements
-  const txtWordmark = document.getElementById('txtWordmark');
-  const txtTagline = document.getElementById('txtTagline');
-  const txtDescriptor = document.getElementById('txtDescriptor');
-  const txtSloganLine1 = document.getElementById('txtSloganLine1');
-  const txtSloganLine2 = document.getElementById('txtSloganLine2');
-  const txtCta = document.getElementById('txtCta');
-  const langButtons = document.querySelectorAll('.lang-btn');
+  // Read saved language from localStorage if available
+  try {
+    const saved = localStorage.getItem('sky_lang');
+    if (saved && ['uk', 'es', 'en', 'ru'].includes(saved)) {
+      currentLang = saved;
+    }
+  } catch (e) {}
 
   document.addEventListener('DOMContentLoaded', initApp);
 
   function initApp() {
     loadTranslations();
     setupLanguageSwitcher();
-    setupScrollAnimation();
+    setupHeroScrollAnimation();
   }
 
   /**
-   * STEP 3: Load i18n from i18n.json with fallback
+   * Load i18n from i18n.json with fallback
    */
   async function loadTranslations() {
     try {
@@ -94,26 +198,70 @@
   }
 
   /**
-   * Applies the selected language strings across the DOM
+   * Applies the selected language strings across all sections on the current page
    */
   function applyLanguage(lang) {
     if (!translations[lang]) return;
     currentLang = lang;
+    try {
+      localStorage.setItem('sky_lang', lang);
+    } catch (e) {}
 
     const data = translations[lang];
 
     // Wordmark is ALWAYS "S·K·Y" (never translated)
+    const txtWordmark = document.getElementById('txtWordmark');
     if (txtWordmark) txtWordmark.textContent = "S·K·Y";
-    
-    // Every other string updates
-    if (txtTagline) txtTagline.textContent = data.tagline;
-    if (txtDescriptor) txtDescriptor.textContent = data.descriptor;
-    if (txtSloganLine1) txtSloganLine1.textContent = data.slogan_line1;
-    if (txtSloganLine2) txtSloganLine2.textContent = data.slogan_line2;
-    if (txtCta) txtCta.textContent = data.cta;
 
-    // Update active button state
-    langButtons.forEach(btn => {
+    // Hero Section elements
+    setElementText('txtTagline', data.tagline);
+    setElementText('txtDescriptor', data.descriptor);
+    setElementText('txtSloganLine1', data.slogan_line1);
+    setElementText('txtSloganLine2', data.slogan_line2);
+    setElementText('txtCta', data.cta);
+
+    // Section 2: About
+    setElementText('txtAboutLabel', data.about_label);
+    setElementText('txtAboutName', data.about_name);
+    setElementText('txtAboutRole', data.about_role);
+    setElementText('txtAboutBody', data.about_body);
+    setElementText('txtAboutChip', data.about_chip);
+
+    // Section 3: Equipment
+    setElementText('txtEquipLabel', data.equip_label);
+    setElementText('txtEquipLead', data.equip_lead);
+    setElementText('txtEquipItem1', data.equip_item1);
+    setElementText('txtEquipItem2', data.equip_item2);
+    setElementText('txtEquipItem3', data.equip_item3);
+
+    // Section 4: Protocols
+    setElementText('txtProtoLabel', data.proto_label);
+    setElementText('txtProtoBody', data.proto_body);
+
+    // Section 5: How it works
+    setElementText('txtHowLabel', data.how_label);
+    setElementText('txtHowN1', data.how_n1);
+    setElementText('txtHowT1', data.how_t1);
+    setElementText('txtHowD1', data.how_d1);
+    setElementText('txtHowN2', data.how_n2);
+    setElementText('txtHowT2', data.how_t2);
+    setElementText('txtHowD2', data.how_d2);
+    setElementText('txtHowN3', data.how_n3);
+    setElementText('txtHowT3', data.how_t3);
+    setElementText('txtHowD3', data.how_d3);
+    setElementText('txtHowLangs', data.how_langs);
+    setElementText('txtHowCta', data.how_cta);
+
+    // Services Screen elements
+    setElementText('txtServicesBack', data.services_back);
+    setElementText('txtServicesCard1', data.services_card1);
+    setElementText('txtServicesCard2', data.services_card2);
+    setElementText('txtServicesCard3', data.services_card3);
+    setElementText('txtServicesCard4', data.services_card4);
+
+    // Update active button state in all switchers (top nav and Section 5 footer)
+    const allLangButtons = document.querySelectorAll('.lang-btn, .how-lang-btn');
+    allLangButtons.forEach(btn => {
       const isActive = btn.dataset.lang === lang;
       btn.classList.toggle('is-active', isActive);
       btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
@@ -122,8 +270,16 @@
     document.documentElement.lang = lang;
   }
 
+  function setElementText(id, text) {
+    const el = document.getElementById(id);
+    if (el && text !== undefined) {
+      el.textContent = text;
+    }
+  }
+
   function setupLanguageSwitcher() {
-    langButtons.forEach(btn => {
+    const allLangButtons = document.querySelectorAll('.lang-btn, .how-lang-btn');
+    allLangButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const lang = btn.dataset.lang;
         if (lang) applyLanguage(lang);
@@ -132,28 +288,34 @@
   }
 
   /**
-   * STEP 4: Scroll Animation Driven with GSAP + ScrollTrigger
+   * Hero Scroll Animation with GSAP + ScrollTrigger (Preserved exactly as requested)
    */
-  function setupScrollAnimation() {
+  function setupHeroScrollAnimation() {
+    const heroScroll = document.getElementById('heroScroll');
+    const heroSticky = document.getElementById('heroSticky');
+    const layerB = document.getElementById('layerB');
+    const edgeLineLeft = document.getElementById('edgeLineLeft');
+    const edgeLineRight = document.getElementById('edgeLineRight');
+    const heroTextLayer = document.getElementById('heroTextLayer');
+    const heroCtaWrapper = document.getElementById('heroCtaWrapper');
+
+    if (!heroScroll || !heroSticky || !layerB) return;
+
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Prefers-reduced-motion: skip animation, show Layer B in full colour, static text
     if (prefersReducedMotion) {
-      if (layerB) layerB.style.clipPath = 'none';
+      layerB.style.clipPath = 'none';
       if (edgeLineLeft) edgeLineLeft.style.display = 'none';
       if (edgeLineRight) edgeLineRight.style.display = 'none';
       return;
     }
 
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-      console.warn('GSAP or ScrollTrigger CDN not available.');
       return;
     }
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // Initial State Check
-    // Starts as vertical strip: left 58% of viewport, width 26% of viewport (right inset = 16%)
     layerB.style.clipPath = 'inset(0% 16% 0% 58%)';
     gsap.set(edgeLineLeft, { x: 0, opacity: 1 });
     gsap.set(edgeLineRight, { x: 0, opacity: 1 });
@@ -161,33 +323,28 @@
     gsap.set(heroCtaWrapper, { opacity: 1, y: 0 });
     gsap.set(heroSticky, { scale: 1.0, opacity: 1 });
 
-    // Proxy object for precision synchronized clipPath animation
     const maskState = {
-      leftInset: 58,  // from 58% down to 0%
-      rightInset: 16  // from 16% down to 0% (widens strip right edge from 84% to 100%)
+      leftInset: 58,
+      rightInset: 16
     };
 
-    // Master Timeline across 300vh hero (total duration normalized to 1.0)
     const tl = gsap.timeline({
       paused: true,
       defaults: { ease: 'none' }
     });
 
-    // 0.00 - 0.15: Nothing moves, the strip holds its starting width
-    // (Timeline starts with 0.15 pause before first transition)
-
-    // 0.15 - 0.80: Clip-path strip widens from 26% to 100% of viewport width, easing out
+    // 0.15 - 0.80: Clip-path strip widens from 26% to 100% of viewport width
     tl.to(maskState, {
       leftInset: 0,
       rightInset: 0,
-      duration: 0.65, // 0.80 - 0.15 = 0.65
+      duration: 0.65,
       ease: 'power2.out',
       onUpdate: () => {
         layerB.style.clipPath = `inset(0% ${maskState.rightInset}% 0% ${maskState.leftInset}%)`;
       }
     }, 0.15);
 
-    // 0.15 - 0.80: Left cream edge line travels from 58vw to 0vw (-58vw) and fades to 0
+    // 0.15 - 0.80: Left line travels to 0vw and fades out
     tl.to(edgeLineLeft, {
       x: '-58vw',
       opacity: 0,
@@ -195,7 +352,7 @@
       ease: 'power2.out'
     }, 0.15);
 
-    // 0.15 - 0.80: Right cream edge line travels from 84vw to 100vw (+16vw) and fades to 0
+    // 0.15 - 0.80: Right line travels to 100vw and fades out
     tl.to(edgeLineRight, {
       x: '16vw',
       opacity: 0,
@@ -203,51 +360,30 @@
       ease: 'power2.out'
     }, 0.15);
 
-    // 0.60 - 0.90: Text layer fades from 1 to 0 and translates up 40px
+    // 0.60 - 0.90: Text layer fades out and translates up 40px
     tl.to([heroTextLayer, heroCtaWrapper], {
       opacity: 0,
       y: -40,
-      duration: 0.30, // 0.90 - 0.60 = 0.30
+      duration: 0.30,
       ease: 'power2.out'
     }, 0.60);
 
-    // 0.85 - 1.00: Whole hero scales from 1.0 to 1.04 and fades out, releasing sticky container
+    // 0.85 - 1.00: Whole hero scales to 1.04 and fades out, releasing sticky container
     tl.to(heroSticky, {
       scale: 1.04,
       opacity: 0,
-      duration: 0.15, // 1.00 - 0.85 = 0.15
+      duration: 0.15,
       ease: 'power2.out'
     }, 0.85);
 
-    // Connect to ScrollTrigger
     ScrollTrigger.create({
       trigger: heroScroll,
       start: 'top top',
       end: 'bottom bottom',
       scrub: true,
-      animation: tl,
-      onUpdate: (self) => {
-        // Accessibility attribute state
-        const isPastHero = self.progress >= 0.98;
-        heroSticky.setAttribute('aria-hidden', isPastHero ? 'true' : 'false');
-      }
+      animation: tl
     });
 
-    // Smooth Scroll on CTA click to reveal full colour frame
-    if (ctaBtn) {
-      ctaBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const maxScroll = heroScroll.offsetHeight - window.innerHeight;
-        // Scroll to 80% where frame is fully in colour
-        const targetY = maxScroll * 0.80;
-        window.scrollTo({
-          top: targetY,
-          behavior: 'smooth'
-        });
-      });
-    }
-
-    // Refresh on resize
     window.addEventListener('resize', () => {
       ScrollTrigger.refresh();
     });
