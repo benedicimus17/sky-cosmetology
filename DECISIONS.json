@@ -1,0 +1,100 @@
+{
+  "project": "design",
+  "status": "active",
+  "rules": {
+    "role_definition": {
+      "status": "FROZEN_APPROVED",
+      "source": "AGENTS.md",
+      "description": "Master role as Senior Product Designer & Frontend Implementer. Follows prompt structure, non-negotiable design standards, and token-first architecture."
+    },
+    "qa_gate": {
+      "status": "FROZEN_APPROVED",
+      "source": "design-agent/ACCEPTANCE-CHECKLIST.md",
+      "description": "Baseline acceptance checklist mandatory for every design task. Verified pass/fail report required before task completion."
+    }
+  },
+  "decisions": [
+    {
+      "id": "SKY_INDEX_SERIES_I",
+      "title": "S.K.Y. Mobile Index Screens (I1–I5)",
+      "status": "FROZEN_APPROVED",
+      "date": "2026-11-04",
+      "resolution": "1170x2532 (iPhone 14 Pro Max)",
+      "palette": {
+        "paper": "#F4F1EC",
+        "slate": "#1C1B19",
+        "gold": "#B08D57"
+      },
+      "geometry_rule": "Zero circles, rings, or arcs across all concepts, except circular photo thumbnails in I5 pills.",
+      "source_imagery": {
+        "collection": "V1-warm-clinical",
+        "zones": {
+          "HOME": "Image A (warm treatment studio: window, linen, oak)",
+          "VILLA": "Image B (Mediterranean stone terrace: balustrade, curtain, pool)",
+          "INJECT": "Image C (clinical macro: glass ampoule on pale stone)"
+        }
+      },
+      "deliverables": [
+        {
+          "file": "faily kartunok/i1-the-stack.png",
+          "concept": "The Stack",
+          "layout": "Physical card hand stack viewed from above with 2-3 deg rotation, 90px lower strip reveals with zone names and gold indices, large display word behind stack."
+        },
+        {
+          "file": "faily kartunok/i2-the-letterform.png",
+          "concept": "The Letterform",
+          "layout": "Enormous S-K-Y letters stacked vertically with SVG clipPath photo fills (A, B, C), zone titles and gold indices to the right, thin gold hairlines."
+        },
+        {
+          "file": "faily kartunok/i3-the-quarter-grid.png",
+          "concept": "The Quarter Grid",
+          "layout": "Strict 2x2 grid with 10px paper gutters, top-left paper cell with brand wordmark and display word, remaining 3 cells carry full-bleed photography with lower-left label/gold index."
+        },
+        {
+          "file": "faily kartunok/i4-the-film-strip.png",
+          "concept": "The Film Strip",
+          "layout": "Vertical 35mm film strip down center (656px width, 56%) with square paper sprocket holes along borders, 3 photo frames (4px paper gaps), side margins with 90 deg rotated zone names and gold indices."
+        },
+        {
+          "file": "faily kartunok/i5-the-pills.png",
+          "concept": "The Pills",
+          "layout": "Full-bleed Mediterranean villa terrace (Image B) background, upper white wordmark, lower half 3 floating paper pills (#F4F1EC) staggered horizontally with circular photo thumbnails, gold indices, and dark serif zone names."
+        }
+      ]
+    },
+    {
+      "id": "SKY_SERIES_K",
+      "title": "S.K.Y. Mobile Landing Concepts (K1–K5)",
+      "status": "FROZEN_APPROVED",
+      "date": "2026-11-04",
+      "resolution": "1170x2532 (iPhone 14 Pro Max)",
+      "deliverables": [
+        {
+          "file": "faily kartunok/k1-liquid-silk.png",
+          "concept": "K1 — Liquid Silk",
+          "layout": "Deep espresso #3A2A20 background with flowing liquid silk curves, 4 frosted glass cards (86% width, 24px radius, 1px white border 40%), bronze index numerals, descriptors, and 92px bottom nav."
+        },
+        {
+          "file": "faily kartunok/k2-the-seam.png",
+          "concept": "K2 — The Seam",
+          "layout": "Vertical seam at 48%, warm sand #E7D3BC left, near-black #141210 right, tall frosted dropper bottle lit from left on seam, split-color typography switching dark to bone white at 48%, brass hairlines #9C7C4A, 92px split bottom nav."
+        },
+        {
+          "file": "faily kartunok/k3-editorial-grain.png",
+          "concept": "K3 — Editorial Grain",
+          "layout": "Paper white #FAF8F5 with heavy film grain, 2x2 grid with 8px white gutters, desaturated high-contrast photography, large condensed black titles (#0B0B0B) overlapping tile edges, coral #C8503C indices, small top-left S.K.Y., 92px bottom nav."
+        },
+        {
+          "file": "faily kartunok/k4-midnight-gold.png",
+          "concept": "K4 — Midnight Gold",
+          "layout": "Near-black #1A1A1A to bronze #5E4B43 dark theme gradient, full-width gold hairline, 4 horizontal glass panels (90% width, 20px radius, 1px gold top edge #B08D57) with square photo thumbnails, gold indices, ivory serif titles, 92px dark nav."
+        },
+        {
+          "file": "faily kartunok/k5-the-breakout.png",
+          "concept": "K5 — The Breakout",
+          "layout": "Bone #F1EDE6 background, 4 vertical panels (34%/26%/22%/18%) with 4px bone gutters slicing continuous treatment room with vertical offsets, rotated 90 deg vertical labels, single sharp terracotta #B5775A glass bottle overlapping 3 panels, 92px bone nav."
+        }
+      ]
+    }
+  ]
+}

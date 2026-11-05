@@ -1,0 +1,504 @@
+/* ==========================================================================
+   S·K·Y (Skin Keeps Youth) — Hero Scroll-Driven Reveal Stylesheet
+   Strict Palette:
+     Cream:       #F6EFE4 (Edge lines, highlights)
+     Sand:        #E6D7C4 (Warm plaster backdrop)
+     Taupe:       #C9B49C (Subtle borders)
+     Accent:      #A9683F (Descriptor, hairlines, pill arrows)
+     Headings:    #4A3327 (Wordmark, slogan)
+     Body Text:   #2B2420 (Copy)
+   ========================================================================== */
+
+:root {
+  --color-cream: #F6EFE4;
+  --color-sand: #E6D7C4;
+  --color-taupe: #C9B49C;
+  --color-warm-brown: #A9683F;
+  --color-deep-brown: #4A3327;
+  --color-near-black: #2B2420;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Frosted Glass Tokens */
+  --glass-bg: rgba(246, 239, 228, 0.52);
+  --glass-bg-hover: rgba(255, 255, 255, 0.78);
+  --glass-border-light: rgba(255, 255, 255, 0.85);
+  --glass-border-taupe: rgba(201, 180, 156, 0.5);
+  --glass-shadow: 0 16px 36px -6px rgba(74, 51, 39, 0.16);
+  --glass-blur: 16px;
+}
+
+/* ==========================================================================
+   Reset & Page Container (100vw, no horizontal scroll)
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100%;
+  background-color: var(--color-sand);
+  color: var(--color-near-black);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: clip;
+  position: relative;
+  background-color: var(--color-sand);
+}
+
+/* ==========================================================================
+   STEP 1: Hero Scroll Track (300vh for scroll animation distance)
+   ========================================================================== */
+.hero-scroll {
+  width: 100vw;
+  height: 300vh;
+  position: relative;
+}
+
+/* ==========================================================================
+   STEP 2: Hero Sticky Viewport (100vh pinned)
+   ========================================================================== */
+.hero-sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  will-change: transform, opacity;
+  transform-origin: center center;
+}
+
+/* Background Stage */
+.hero-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Image Wrapper shifted 9% right so left third remains clear */
+.hero-shift-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hero-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hero-img {
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 120%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transform: translateX(9%);
+  transform-origin: center center;
+  display: block;
+}
+
+/* Layer A: Full bleed, Warm Monochrome Filter */
+.hero-layer--a {
+  z-index: 1;
+  filter: sepia(0.35) saturate(0.25) contrast(1.02) brightness(1.03);
+}
+
+/* Layer B: Full bleed, Full Colour, revealed through clip-path inset strip */
+/* Initial strip: left 58vw, width 26vw => right inset = 100% - (58% + 26%) = 16% */
+.hero-layer--b {
+  z-index: 2;
+  clip-path: inset(0% 16% 0% 58%);
+  will-change: clip-path;
+}
+
+/* Vertical 1px Cream (#F6EFE4) Lines at strip edges */
+.strip-edge-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  height: 100%;
+  background-color: var(--color-cream);
+  z-index: 3;
+  pointer-events: none;
+  will-change: transform, opacity;
+  box-shadow: 0 0 6px rgba(246, 239, 228, 0.45);
+}
+
+.strip-edge-line--left {
+  left: 58vw;
+  transform: translateX(0);
+}
+
+.strip-edge-line--right {
+  left: 84vw; /* 58vw + 26vw */
+  transform: translateX(0);
+}
+
+/* ==========================================================================
+   STEP 3: Top Bar & Brand Wordmark
+   ========================================================================== */
+.hero-top-bar {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding: 28px 32px 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  pointer-events: auto;
+}
+
+.brand-block {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.brand-wordmark {
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 400;
+  color: var(--color-deep-brown);
+  letter-spacing: 0.25em;
+  line-height: 1;
+}
+
+.brand-tagline {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  color: var(--color-warm-brown);
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+/* Language Switcher (Subtle, elegant buttons) */
+.lang-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(246, 239, 228, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border-taupe);
+  border-radius: 9999px;
+  padding: 3px 6px;
+}
+
+.lang-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: none;
+  color: var(--color-deep-brown);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 6px 10px;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease;
+  outline: none;
+}
+
+.lang-btn:hover {
+  color: var(--color-warm-brown);
+}
+
+.lang-btn.is-active {
+  background: var(--color-deep-brown);
+  color: var(--color-cream);
+}
+
+.lang-btn:focus-visible {
+  outline: 2px solid var(--color-warm-brown);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   STEP 3: Text Layer (Left Third: Descriptor & Slogan)
+   ========================================================================== */
+.hero-text-layer {
+  position: absolute;
+  top: 50%;
+  left: 32px;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: clamp(260px, 32vw, 420px);
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  will-change: transform, opacity;
+}
+
+.hero-descriptor {
+  font-family: var(--font-sans);
+  font-size: clamp(10px, 1.1vw, 12px);
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  color: var(--color-warm-brown);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.hero-slogan {
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 3.6vw, 44px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--color-deep-brown);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-slogan__line {
+  display: block;
+}
+
+.hero-hairline {
+  width: 48px;
+  height: 1.5px;
+  background-color: var(--color-warm-brown);
+  opacity: 0.65;
+  margin-top: 18px;
+}
+
+/* ==========================================================================
+   STEP 3: Frosted-Glass Pill CTA Centred, Bottom Edge 9% Up
+   ========================================================================== */
+.hero-cta-wrapper {
+  position: absolute;
+  left: 50%;
+  bottom: 9%;
+  transform: translateX(-50%);
+  z-index: 20;
+  pointer-events: auto;
+  will-change: transform, opacity;
+}
+
+.frosted-pill-cta {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-top: 1.5px solid var(--glass-border-light);
+  border-left: 1.5px solid var(--glass-border-light);
+  border-right: 1px solid var(--glass-border-taupe);
+  border-bottom: 1px solid var(--glass-border-taupe);
+  border-radius: 9999px;
+  padding: 14px 34px;
+  min-height: 48px;
+  min-width: 220px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  box-shadow: var(--glass-shadow);
+  text-decoration: none;
+  outline: none;
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+              background 240ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.frosted-pill-cta:hover {
+  background: var(--glass-bg-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 42px -6px rgba(169, 104, 63, 0.24);
+}
+
+.frosted-pill-cta:focus-visible {
+  outline: 2px solid var(--color-warm-brown);
+  outline-offset: 4px;
+}
+
+.frosted-pill-cta__text {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-deep-brown);
+}
+
+.frosted-pill-cta__arrow {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  color: var(--color-warm-brown);
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.frosted-pill-cta:hover .frosted-pill-cta__arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   - 390px Mobile Viewport
+   - 768px Tablet Viewport
+   - 1440px Desktop Viewport
+   ========================================================================== */
+@media (max-width: 767px) {
+  .hero-top-bar {
+    padding: 18px 16px 0;
+  }
+
+  .brand-wordmark {
+    font-size: 24px;
+    letter-spacing: 0.22em;
+  }
+
+  .brand-tagline {
+    font-size: 8px;
+    letter-spacing: 0.22em;
+  }
+
+  .lang-nav {
+    padding: 2px 4px;
+    gap: 2px;
+  }
+
+  .lang-btn {
+    font-size: 10px;
+    padding: 4px 6px;
+    min-width: 34px;
+    min-height: 34px;
+  }
+
+  .hero-text-layer {
+    left: 18px;
+    width: 52vw;
+    max-width: 215px;
+    top: 40%;
+  }
+
+  .hero-slogan {
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-descriptor {
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    margin-bottom: 8px;
+  }
+
+  .hero-hairline {
+    width: 36px;
+    margin-top: 12px;
+  }
+
+  .frosted-pill-cta {
+    padding: 12px 26px;
+    min-width: 190px;
+    background: rgba(246, 239, 228, 0.72);
+  }
+
+  .frosted-pill-cta__text {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-text-layer {
+    left: 28px;
+    width: 38vw;
+  }
+
+  .hero-slogan {
+    font-size: 34px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero-top-bar {
+    padding: 36px 48px 0;
+  }
+
+  .hero-text-layer {
+    left: 48px;
+    width: 32vw;
+  }
+
+  .hero-slogan {
+    font-size: 48px;
+  }
+
+  .frosted-pill-cta {
+    padding: 16px 40px;
+  }
+
+  .frosted-pill-cta__text {
+    font-size: 21px;
+  }
+}
+
+/* ==========================================================================
+   Accessibility & Prefers-Reduced-Motion
+   "Respect prefers-reduced-motion: skip the animation and show layer B in
+    full colour with the text static."
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .hero-scroll {
+    height: 100vh !important;
+  }
+
+  .hero-layer--b {
+    clip-path: none !important;
+  }
+
+  .strip-edge-line {
+    display: none !important;
+  }
+
+  .hero-text-layer,
+  .hero-cta-wrapper,
+  .hero-sticky {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "uk": {
+    "wordmark": "S·K·Y",
+    "tagline": "ЗБЕРЕЖЕННЯ МОЛОДОСТІ ШКІРИ",
+    "descriptor": "КЛАСИЧНА ТА АПАРАТНА КОСМЕТОЛОГІЯ",
+    "slogan_line1": "МОЛОДІСТЬ ПОЧИНАЄТЬСЯ",
+    "slogan_line2": "ЗІ ШКІРИ",
+    "cta": "Обрати процедуру"
+  },
+  "es": {
+    "wordmark": "S·K·Y",
+    "tagline": "LA JUVENTUD DE TU PIEL",
+    "descriptor": "COSMETOLOGÍA CLÁSICA Y APARATOLOGÍA",
+    "slogan_line1": "LA JUVENTUD COMIENZA",
+    "slogan_line2": "EN LA PIEL",
+    "cta": "Elegir tratamiento"
+  },
+  "en": {
+    "wordmark": "S·K·Y",
+    "tagline": "SKIN KEEPS YOUTH",
+    "descriptor": "CLASSICAL & CLINICAL AESTHETICS",
+    "slogan_line1": "YOUTH BEGINS",
+    "slogan_line2": "WITH YOUR SKIN",
+    "cta": "Select treatment"
+  },
+  "ru": {
+    "wordmark": "S·K·Y",
+    "tagline": "СОХРАНЕНИЕ МОЛОДОСТИ КОЖИ",
+    "descriptor": "КЛАССИЧЕСКАЯ И АППАРАТНАЯ КОСМЕТОЛОГИЯ",
+    "slogan_line1": "МОЛОДОСТЬ НАЧИНАЕТСЯ",
+    "slogan_line2": "С КОЖИ",
+    "cta": "Выбрать процедуру"
+  }
+}

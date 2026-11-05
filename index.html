@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>S·K·Y — Skin Keeps Youth</title>
+
+  <!-- Google Fonts: Cormorant Garamond (High-contrast Serif) & Inter (Light Sans) with Cyrillic subset -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css">
+
+  <!-- GSAP 3 + ScrollTrigger (exact pinned CDN version 3.12.5) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <!-- Hero Scroll Container (300vh for scroll distance) -->
+  <div class="hero-scroll" id="heroScroll">
+    
+    <!-- Hero Sticky Viewport (100vh) -->
+    <section class="hero-sticky" id="heroSticky" aria-label="Головний екран практики S.K.Y.">
+
+      <!-- Background Image Stage -->
+      <div class="hero-stage" id="heroStage">
+        
+        <!-- Image Wrapper with 9% shift to the right -->
+        <div class="hero-shift-wrapper">
+
+          <!-- Layer A: Full bleed, object-fit cover, Warm Monochrome Filter -->
+          <div class="hero-layer hero-layer--a" id="layerA" aria-hidden="true">
+            <img src="./img/01_home_hero_clean.png" alt="" class="hero-img hero-img--layer-a">
+          </div>
+
+          <!-- Layer B: Full bleed, Full Colour, Revealed through Clip-Path Inset Strip -->
+          <div class="hero-layer hero-layer--b" id="layerB" aria-hidden="true">
+            <img src="./img/01_home_hero_clean.png" alt="" class="hero-img hero-img--layer-b">
+          </div>
+
+        </div>
+
+        <!-- 1px Cream (#F6EFE4) Vertical Edge Lines of the Mask Strip -->
+        <div class="strip-edge-line strip-edge-line--left" id="edgeLineLeft" aria-hidden="true"></div>
+        <div class="strip-edge-line strip-edge-line--right" id="edgeLineRight" aria-hidden="true"></div>
+
+      </div>
+
+      <!-- Top Header / Wordmark + Language Switcher -->
+      <header class="hero-top-bar" role="banner">
+        <div class="brand-block">
+          <span class="brand-wordmark" id="txtWordmark">S·K·Y</span>
+          <span class="brand-tagline" id="txtTagline">SKIN KEEPS YOUTH</span>
+        </div>
+
+        <!-- Subtle Language Selector (UK / ES / EN / RU) -->
+        <nav class="lang-nav" aria-label="Вибір мови">
+          <button type="button" class="lang-btn is-active" data-lang="uk" aria-label="Українська версія" aria-pressed="true">UK</button>
+          <button type="button" class="lang-btn" data-lang="es" aria-label="Versión en Español" aria-pressed="false">ES</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-label="English version" aria-pressed="false">EN</button>
+          <button type="button" class="lang-btn" data-lang="ru" aria-label="Русская версия" aria-pressed="false">RU</button>
+        </nav>
+      </header>
+
+      <!-- Text Layer (Left Third: Descriptor & Slogan) -->
+      <div class="hero-text-layer" id="heroTextLayer">
+        <p class="hero-descriptor" id="txtDescriptor">КЛАСИЧНА ТА АПАРАТНА КОСМЕТОЛОГІЯ</p>
+        <h1 class="hero-slogan">
+          <span class="hero-slogan__line" id="txtSloganLine1">МОЛОДІСТЬ ПОЧИНАЄТЬСЯ</span>
+          <span class="hero-slogan__line" id="txtSloganLine2">ЗІ ШКІРИ</span>
+        </h1>
+        <div class="hero-hairline" aria-hidden="true"></div>
+      </div>
+
+      <!-- Frosted-Glass Pill CTA Centred, Bottom Edge 9% Up from Viewport Bottom -->
+      <div class="hero-cta-wrapper" id="heroCtaWrapper">
+        <button type="button" class="frosted-pill-cta" id="ctaBtn" aria-label="Обрати процедуру">
+          <span class="frosted-pill-cta__text" id="txtCta">Обрати процедуру</span>
+          <span class="frosted-pill-cta__arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+
+    </section>
+
+  </div>
+
+  <script src="./main.js"></script>
+</body>
+</html>
