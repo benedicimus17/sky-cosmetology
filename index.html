@@ -27,24 +27,13 @@
       <!-- Background Image Stage -->
       <div class="hero-stage" id="heroStage">
         
-        <!-- Image Wrapper with 9% shift to the right -->
-        <div class="hero-shift-wrapper">
-
-          <!-- Layer A: Full bleed, object-fit cover, Warm Monochrome Filter -->
-          <div class="hero-layer hero-layer--a" id="layerA" aria-hidden="true">
-            <img src="./img/01_home_hero_clean.png" alt="" class="hero-img hero-img--layer-a">
-          </div>
-
-          <!-- Layer B: Full bleed, Full Colour, Revealed through Clip-Path Inset Strip -->
-          <div class="hero-layer hero-layer--b" id="layerB" aria-hidden="true">
-            <img src="./img/01_home_hero_clean.png" alt="" class="hero-img hero-img--layer-b">
-          </div>
-
+        <!-- Layer 1 (bottom): 01_home_hero_clean.png in full natural colour, scaled to 112% and centred -->
+        <div class="hero-plate-layer" id="heroPlateLayer" aria-hidden="true">
+          <img src="./img/01_home_hero_clean.png" alt="" class="hero-plate-img" id="heroPlateImg">
         </div>
 
-        <!-- 1px Cream (#F6EFE4) Vertical Edge Lines of the Mask Strip -->
-        <div class="strip-edge-line strip-edge-line--left" id="edgeLineLeft" aria-hidden="true"></div>
-        <div class="strip-edge-line strip-edge-line--right" id="edgeLineRight" aria-hidden="true"></div>
+        <!-- Layer 2 (middle): The travelling shadow overlay (115deg gradient, 260% width) -->
+        <div class="hero-shadow-overlay" id="heroShadowOverlay" aria-hidden="true"></div>
 
       </div>
 
@@ -91,53 +80,57 @@
 
     <!-- SECTION 2: ABOUT (plate 02_home_about.png) -->
     <section class="home-section home-section--about" id="about" aria-label="Хто ми">
-      <div class="home-section__bg" aria-hidden="true">
-        <img src="./img/02_home_about.png" alt="" class="home-section__bg-img">
-      </div>
+      <div class="plate-box plate-box--about">
+        <img src="./img/02_home_about.png" alt="" class="plate-box__img" aria-hidden="true">
 
-      <div class="section-container section-container--about">
-        <div class="about-content-left">
+        <div class="about-heading-block">
           <span class="section-label" id="txtAboutLabel">ХТО МИ</span>
           <h2 class="about-name" id="txtAboutName">МАРІЯ СТЕФАНЮК</h2>
           <p class="about-role" id="txtAboutRole">КОСМЕТОЛОГ</p>
+        </div>
+
+        <div class="about-body-block">
           <p class="about-body" id="txtAboutBody">S.K.Y. — приватна практика естетичної косметології на узбережжі Коста-дель-Соль. Без потоку. Один клієнт — один час. Кожен протокол збирається під конкретну шкіру, а не під прайс.</p>
         </div>
 
-        <div class="about-chip-wrap">
-          <div class="about-chip" id="txtAboutChip" aria-label="Сертифікація безпеки">СЕРТИФІКАЦІЯ FDA</div>
+        <div class="about-glass-chip">
+          <span class="about-fda-text" id="txtAboutChip" aria-label="Сертифікація безпеки">СЕРТИФІКАЦІЯ FDA</span>
         </div>
       </div>
     </section>
 
     <!-- SECTION 3: EQUIPMENT (plate 03_home_equipment.png) -->
     <section class="home-section home-section--equipment" id="equipment" aria-label="На чому працюємо">
-      <div class="home-section__bg" aria-hidden="true">
-        <img src="./img/03_home_equipment.png" alt="" class="home-section__bg-img">
-      </div>
+      <div class="plate-box plate-box--equipment">
+        <img src="./img/03_home_equipment.png" alt="" class="plate-box__img" aria-hidden="true">
 
-      <div class="section-container section-container--equipment">
-        <div class="equipment-top-block">
+        <div class="equipment-heading-block">
           <span class="section-label" id="txtEquipLabel">НА ЧОМУ ПРАЦЮЄМО</span>
           <h2 class="equipment-lead" id="txtEquipLead">Амбасадор Zemits в Іспанії</h2>
         </div>
 
-        <div class="equipment-bottom-block">
-          <div class="equipment-item-line" id="txtEquipItem1">ZEMITS VERSTAND HD PRO — станція 8 в 1 для догляду за обличчям</div>
-          <div class="equipment-item-line" id="txtEquipItem2">ZEMITS ABIGON PRO — професійна корекція фігури</div>
-          <div class="equipment-item-line" id="txtEquipItem3">ZEMITS SKYFRAX PRO — мікроголковий RF-ліфтинг</div>
+        <div class="equipment-line equipment-line--1" id="txtEquipItem1">
+          ZEMITS VERSTAND HD PRO — станція 8 в 1 для догляду за обличчям
+        </div>
+        <div class="equipment-line equipment-line--2" id="txtEquipItem2">
+          ZEMITS ABIGON PRO — професійна корекція фігури
+        </div>
+        <div class="equipment-line equipment-line--3" id="txtEquipItem3">
+          ZEMITS SKYFRAX PRO — мікроголковий RF-ліфтинг
         </div>
       </div>
     </section>
 
     <!-- SECTION 4: PROTOCOLS (plate 04_home_protocols.png) -->
     <section class="home-section home-section--protocols" id="protocols" aria-label="Професійні протоколи">
-      <div class="home-section__bg" aria-hidden="true">
-        <img src="./img/04_home_protocols.png" alt="" class="home-section__bg-img">
-      </div>
+      <div class="plate-box plate-box--protocols">
+        <img src="./img/04_home_protocols.png" alt="" class="plate-box__img" aria-hidden="true">
 
-      <div class="section-container section-container--protocols">
-        <div class="protocols-content-right">
+        <div class="protocols-heading-block">
           <span class="section-label" id="txtProtoLabel">ПРОФЕСІЙНІ ПРОТОКОЛИ</span>
+        </div>
+
+        <div class="protocols-body-block">
           <p class="protocols-body" id="txtProtoBody">Працюємо з тим, чого немає у вільному продажу: професійні пілінги, протоколи корекції мелазми та пігментації, курси під конкретну проблему шкіри.</p>
         </div>
       </div>
@@ -145,72 +138,55 @@
 
     <!-- SECTION 5: HOW IT WORKS (plate 05_home_howitworks.png) -->
     <section class="home-section home-section--how" id="howItWorks" aria-label="Як це працює">
-      <div class="home-section__bg" aria-hidden="true">
-        <img src="./img/05_home_howitworks.png" alt="" class="home-section__bg-img">
-      </div>
+      <div class="plate-box plate-box--how">
+        <img src="./img/05_home_howitworks.png" alt="" class="plate-box__img" aria-hidden="true">
 
-      <div class="section-container section-container--how">
-        <div class="how-header-block">
+        <div class="how-heading-block">
           <span class="section-label" id="txtHowLabel">ЯК ЦЕ ПРАЦЮЄ</span>
         </div>
 
-        <!-- The Three Frosted Glass Strips matching background features -->
-        <div class="how-steps-wrapper">
-          
-          <!-- Step 1 -->
-          <div class="how-step-strip how-step-strip--1">
-            <div class="how-step-circle">
-              <span class="how-step-num" id="txtHowN1">01</span>
-            </div>
-            <div class="how-step-info">
-              <h3 class="how-step-title" id="txtHowT1">ДІАГНОСТИКА</h3>
-              <p class="how-step-desc" id="txtHowD1">Розбираємо стан шкіри, спосіб життя і те, чим ви користуєтесь зараз.</p>
-            </div>
-          </div>
+        <!-- 3 frosted glass strips (low opacity so wall shows through matching services.html) -->
+        <div class="how-strip how-strip--1" aria-hidden="true"></div>
+        <div class="how-strip how-strip--2" aria-hidden="true"></div>
+        <div class="how-strip how-strip--3" aria-hidden="true"></div>
 
-          <!-- Step 2 -->
-          <div class="how-step-strip how-step-strip--2">
-            <div class="how-step-circle">
-              <span class="how-step-num" id="txtHowN2">02</span>
-            </div>
-            <div class="how-step-info">
-              <h3 class="how-step-title" id="txtHowT2">ПРОТОКОЛ</h3>
-              <p class="how-step-desc" id="txtHowD2">Складаємо курс: що робимо в кабінеті, що ви робите вдома, у якій послідовності й скільки це займе.</p>
-            </div>
-          </div>
-
-          <!-- Step 3 -->
-          <div class="how-step-strip how-step-strip--3">
-            <div class="how-step-circle">
-              <span class="how-step-num" id="txtHowN3">03</span>
-            </div>
-            <div class="how-step-info">
-              <h3 class="how-step-title" id="txtHowT3">СУПРОВІД</h3>
-              <p class="how-step-desc" id="txtHowD3">Лишаємось на зв'язку між візитами. Коригуємо догляд, коли шкіра змінюється — сезон, перельоти, сонце.</p>
-            </div>
-          </div>
-
+        <!-- Step 1 (Circle 1: left 14.5%, top 35.5%) -->
+        <div class="how-circle how-circle--1">
+          <span class="how-num" id="txtHowN1">01</span>
         </div>
+        <h3 class="how-step-title how-step-title--1" id="txtHowT1">ДІАГНОСТИКА</h3>
+        <p class="how-step-desc how-step-desc--1" id="txtHowD1">Розбираємо стан шкіри, спосіб життя і те, чим ви користуєтесь зараз.</p>
 
-        <!-- Languages note and CTA Button inside existing glass pill -->
-        <div class="how-footer-block">
-          <nav class="how-lang-switcher" aria-label="Вибір мови">
-            <button type="button" class="how-lang-btn is-active" data-lang="uk">UK</button>
-            <span class="how-lang-sep" aria-hidden="true">·</span>
-            <button type="button" class="how-lang-btn" data-lang="es">ES</button>
-            <span class="how-lang-sep" aria-hidden="true">·</span>
-            <button type="button" class="how-lang-btn" data-lang="en">EN</button>
-            <span class="how-lang-sep" aria-hidden="true">·</span>
-            <button type="button" class="how-lang-btn" data-lang="ru">RU</button>
-          </nav>
-          <div class="how-cta-pill-anchor">
-            <a href="./services.html" class="how-cta-button" id="howCtaBtn" aria-label="Обрати процедуру — перейти до послуг">
-              <span class="how-cta-button__text" id="txtHowCta">Обрати процедуру</span>
-              <span class="how-cta-button__arrow" aria-hidden="true">→</span>
-            </a>
-          </div>
+        <!-- Step 2 (Circle 2: left 14.5%, top 54.5%) -->
+        <div class="how-circle how-circle--2">
+          <span class="how-num" id="txtHowN2">02</span>
         </div>
+        <h3 class="how-step-title how-step-title--2" id="txtHowT2">ПРОТОКОЛ</h3>
+        <p class="how-step-desc how-step-desc--2" id="txtHowD2">Складаємо курс: що робимо в кабінеті, що ви робите вдома, у якій послідовності й скільки це займе.</p>
 
+        <!-- Step 3 (Circle 3: left 14.5%, top 73.5%) -->
+        <div class="how-circle how-circle--3">
+          <span class="how-num" id="txtHowN3">03</span>
+        </div>
+        <h3 class="how-step-title how-step-title--3" id="txtHowT3">СУПРОВІД</h3>
+        <p class="how-step-desc how-step-desc--3" id="txtHowD3">Лишаємось на зв'язку між візитами. Коригуємо догляд, коли шкіра змінюється — сезон, перельоти, сонце.</p>
+
+        <!-- Glass Pill CTA at left 19%, top 84%, width 62%, height 7% -->
+        <a href="./services.html" class="how-pill-cta" id="howCtaBtn" aria-label="Обрати процедуру — перейти до послуг">
+          <span class="how-pill-cta__text" id="txtHowCta">Обрати процедуру</span>
+          <span class="how-pill-cta__arrow" aria-hidden="true">→</span>
+        </a>
+
+        <!-- Language Row at left 19%, top 94% — BELOW the pill, never inside it -->
+        <nav class="how-lang-row" aria-label="Вибір мови">
+          <button type="button" class="how-lang-btn is-active" data-lang="uk">UK</button>
+          <span class="how-lang-sep" aria-hidden="true">·</span>
+          <button type="button" class="how-lang-btn" data-lang="es">ES</button>
+          <span class="how-lang-sep" aria-hidden="true">·</span>
+          <button type="button" class="how-lang-btn" data-lang="en">EN</button>
+          <span class="how-lang-sep" aria-hidden="true">·</span>
+          <button type="button" class="how-lang-btn" data-lang="ru">RU</button>
+        </nav>
       </div>
     </section>
 

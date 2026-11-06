@@ -288,25 +288,33 @@
   }
 
   /**
-   * Hero Scroll Animation with GSAP + ScrollTrigger (Preserved exactly as requested)
+   * Hero Scroll Animation with GSAP + ScrollTrigger
+   * Travelling shadow with subtle parallax:
+   * - Layer 1: Plate scales down from 1.12 to 1.04 (ease-out), translates from translateY(-3%) to translateY(3%) (linear)
+   * - Layer 2: Shadow overlay translates from translateX(-62%) to translateX(6%) (linear)
+   * - Progress 0.55 - 0.85: Text layer and CTA fade from 1 to 0 and translate up 40px
+   * - Progress 0.88 - 1.00: Hero sticky container fades out from 1 to 0, releasing into section 2
+   * - prefers-reduced-motion: if true, show hero at progress 0 with no animation
    */
   function setupHeroScrollAnimation() {
     const heroScroll = document.getElementById('heroScroll');
     const heroSticky = document.getElementById('heroSticky');
-    const layerB = document.getElementById('layerB');
-    const edgeLineLeft = document.getElementById('edgeLineLeft');
-    const edgeLineRight = document.getElementById('edgeLineRight');
+    const heroPlateLayer = document.getElementById('heroPlateLayer');
+    const heroShadowOverlay = document.getElementById('heroShadowOverlay');
     const heroTextLayer = document.getElementById('heroTextLayer');
     const heroCtaWrapper = document.getElementById('heroCtaWrapper');
 
-    if (!heroScroll || !heroSticky || !layerB) return;
+    if (!heroScroll || !heroSticky || !heroPlateLayer || !heroShadowOverlay) return;
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReducedMotion) {
-      layerB.style.clipPath = 'none';
-      if (edgeLineLeft) edgeLineLeft.style.display = 'none';
-      if (edgeLineRight) edgeLineRight.style.display = 'none';
+      if (typeof gsap !== 'undefined') {
+        gsap.set(heroPlateLayer, { scale: 1.12, yPercent: -3 });
+        gsap.set(heroShadowOverlay, { xPercent: -62 });
+        gsap.set([heroTextLayer, heroCtaWrapper], { opacity: 1, y: 0 });
+        gsap.set(heroSticky, { opacity: 1 });
+      }
       return;
     }
 
@@ -316,65 +324,52 @@
 
     gsap.registerPlugin(ScrollTrigger);
 
-    layerB.style.clipPath = 'inset(0% 16% 0% 58%)';
-    gsap.set(edgeLineLeft, { x: 0, opacity: 1 });
-    gsap.set(edgeLineRight, { x: 0, opacity: 1 });
-    gsap.set(heroTextLayer, { opacity: 1, y: 0 });
-    gsap.set(heroCtaWrapper, { opacity: 1, y: 0 });
-    gsap.set(heroSticky, { scale: 1.0, opacity: 1 });
-
-    const maskState = {
-      leftInset: 58,
-      rightInset: 16
-    };
+    // Initial state at progress 0.00
+    gsap.set(heroPlateLayer, { scale: 1.12, yPercent: -3 });
+    gsap.set(heroShadowOverlay, { xPercent: -62 });
+    gsap.set([heroTextLayer, heroCtaWrapper], { opacity: 1, y: 0 });
+    gsap.set(heroSticky, { opacity: 1 });
 
     const tl = gsap.timeline({
       paused: true,
       defaults: { ease: 'none' }
     });
 
-    // 0.15 - 0.80: Clip-path strip widens from 26% to 100% of viewport width
-    tl.to(maskState, {
-      leftInset: 0,
-      rightInset: 0,
-      duration: 0.65,
-      ease: 'power2.out',
-      onUpdate: () => {
-        layerB.style.clipPath = `inset(0% ${maskState.rightInset}% 0% ${maskState.leftInset}%)`;
-      }
-    }, 0.15);
+    // 0.00 - 1.00: Shadow overlay translates from translateX(-62%) to translateX(6%) (linear)
+    tl.to(heroShadowOverlay, {
+      xPercent: 6,
+      duration: 1.0,
+      ease: 'none'
+    }, 0);
 
-    // 0.15 - 0.80: Left line travels to 0vw and fades out
-    tl.to(edgeLineLeft, {
-      x: '-58vw',
-      opacity: 0,
-      duration: 0.65,
+    // 0.00 - 1.00: Plate translates from translateY(-3%) to translateY(3%) (subtle vertical parallax, linear)
+    tl.to(heroPlateLayer, {
+      yPercent: 3,
+      duration: 1.0,
+      ease: 'none'
+    }, 0);
+
+    // 0.00 - 1.00: Plate scales down from 1.12 to 1.04 (gentle pull-back, ease-out)
+    tl.to(heroPlateLayer, {
+      scale: 1.04,
+      duration: 1.0,
       ease: 'power2.out'
-    }, 0.15);
+    }, 0);
 
-    // 0.15 - 0.80: Right line travels to 100vw and fades out
-    tl.to(edgeLineRight, {
-      x: '16vw',
-      opacity: 0,
-      duration: 0.65,
-      ease: 'power2.out'
-    }, 0.15);
-
-    // 0.60 - 0.90: Text layer fades out and translates up 40px
+    // 0.55 - 0.85: Text layer and CTA fade from opacity 1 to 0, and translate up 40px
     tl.to([heroTextLayer, heroCtaWrapper], {
       opacity: 0,
       y: -40,
       duration: 0.30,
       ease: 'power2.out'
-    }, 0.60);
+    }, 0.55);
 
-    // 0.85 - 1.00: Whole hero scales to 1.04 and fades out, releasing sticky container
+    // 0.88 - 1.00: Hero sticky container fades out from opacity 1 to 0, releasing into section 2
     tl.to(heroSticky, {
-      scale: 1.04,
       opacity: 0,
-      duration: 0.15,
+      duration: 0.12,
       ease: 'power2.out'
-    }, 0.85);
+    }, 0.88);
 
     ScrollTrigger.create({
       trigger: heroScroll,

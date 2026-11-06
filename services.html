@@ -14,31 +14,30 @@
 </head>
 <body class="services-page-body">
 
-  <div class="services-stage">
+  <div class="plate-box plate-box--services">
+    <!-- Background plate 06_screen_services.png (object-fit: fill) -->
+    <img src="./img/06_screen_services.png" alt="" class="plate-box__img" aria-hidden="true">
 
-    <!-- Background plate 06_screen_services.png -->
-    <div class="services-bg-layer" aria-hidden="true">
-      <img src="./img/06_screen_services.png" alt="" class="services-bg-img">
+    <!-- S·K·Y wordmark at left 6%, top 5% -->
+    <div class="services-wordmark-block">
+      <span class="brand-wordmark" id="txtWordmark">S·K·Y</span>
+      <span class="brand-tagline" id="txtTagline">SKIN KEEPS YOUTH</span>
     </div>
 
-    <!-- Header bar with small back control and language switcher -->
-    <header class="services-header" role="banner">
-      <div class="services-nav-left">
-        <a href="./index.html" class="services-back-btn" id="servicesBackBtn" aria-label="Повернутися на головну">
-          <span class="services-back-text" id="txtServicesBack">← Назад</span>
-        </a>
-      </div>
+    <!-- Header back control in the top bar returns to index.html -->
+    <a href="./index.html" class="services-back-btn" id="servicesBackBtn" aria-label="Повернутися на головну">
+      <span class="services-back-text" id="txtServicesBack">← Назад</span>
+    </a>
 
-      <!-- Language Switcher -->
-      <nav class="lang-nav" aria-label="Вибір мови">
-        <button type="button" class="lang-btn is-active" data-lang="uk" aria-label="Українська" aria-pressed="true">UK</button>
-        <button type="button" class="lang-btn" data-lang="es" aria-label="Español" aria-pressed="false">ES</button>
-        <button type="button" class="lang-btn" data-lang="en" aria-label="English" aria-pressed="false">EN</button>
-        <button type="button" class="lang-btn" data-lang="ru" aria-label="Русский" aria-pressed="false">RU</button>
-      </nav>
-    </header>
+    <!-- Language Switcher in top-right corner -->
+    <nav class="lang-nav services-lang-nav" aria-label="Вибір мови">
+      <button type="button" class="lang-btn is-active" data-lang="uk" aria-label="Українська" aria-pressed="true">UK</button>
+      <button type="button" class="lang-btn" data-lang="es" aria-label="Español" aria-pressed="false">ES</button>
+      <button type="button" class="lang-btn" data-lang="en" aria-label="English" aria-pressed="false">EN</button>
+      <button type="button" class="lang-btn" data-lang="ru" aria-label="Русский" aria-pressed="false">RU</button>
+    </nav>
 
-    <!-- Main Container over the 4 cascading glass cards -->
+    <!-- Four cascading cards, each zone name and round button over its own card's clear area -->
     <main class="services-cards-grid" role="main" aria-label="Каталог зон практики">
 
       <!-- Card 1: Процедури (Active state: filled #A9683F button with cream arrow) -->
