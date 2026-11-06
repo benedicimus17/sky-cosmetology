@@ -27,13 +27,18 @@
       <!-- Background Image Stage -->
       <div class="hero-stage" id="heroStage">
         
-        <!-- Layer 1 (bottom): 01_home_hero_clean.png in full natural colour, scaled to 112% and centred -->
-        <div class="hero-plate-layer" id="heroPlateLayer" aria-hidden="true">
-          <img src="./img/01_home_hero_clean.png" alt="" class="hero-plate-img" id="heroPlateImg">
+        <!-- Layer A (bottom): 01_home_hero_clean.png in full natural colour, no filter -->
+        <div class="hero-layer hero-layer--a" id="layerA" aria-hidden="true">
+          <img src="./img/01_home_hero_clean.png" alt="" class="hero-img hero-img--layer-a">
         </div>
 
-        <!-- Layer 2 (middle): The travelling shadow overlay (115deg gradient, 260% width) -->
-        <div class="hero-shadow-overlay" id="heroShadowOverlay" aria-hidden="true"></div>
+        <!-- Layer B (top): Warm grey filter revealed through clip-path inset window -->
+        <div class="hero-layer hero-layer--b" id="layerB" aria-hidden="true">
+          <img src="./img/01_home_hero_clean.png" alt="" class="hero-img hero-img--layer-b">
+        </div>
+
+        <!-- 1px cream #F6EFE4 window outline traveling with window edges -->
+        <div class="hero-window-outline" id="windowOutline" aria-hidden="true"></div>
 
       </div>
 
@@ -106,6 +111,9 @@
 
         <div class="equipment-heading-block">
           <span class="section-label" id="txtEquipLabel">НА ЧОМУ ПРАЦЮЄМО</span>
+        </div>
+
+        <div class="equipment-lead-block">
           <h2 class="equipment-lead" id="txtEquipLead">Амбасадор Zemits в Іспанії</h2>
         </div>
 

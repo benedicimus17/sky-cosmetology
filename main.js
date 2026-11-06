@@ -174,7 +174,11 @@
     }
   } catch (e) {}
 
-  document.addEventListener('DOMContentLoaded', initApp);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+  } else {
+    initApp();
+  }
 
   function initApp() {
     loadTranslations();
@@ -289,32 +293,33 @@
 
   /**
    * Hero Scroll Animation with GSAP + ScrollTrigger
-   * Travelling shadow with subtle parallax:
-   * - Layer 1: Plate scales down from 1.12 to 1.04 (ease-out), translates from translateY(-3%) to translateY(3%) (linear)
-   * - Layer 2: Shadow overlay translates from translateX(-62%) to translateX(6%) (linear)
-   * - Progress 0.55 - 0.85: Text layer and CTA fade from 1 to 0 and translate up 40px
-   * - Progress 0.88 - 1.00: Hero sticky container fades out from 1 to 0, releasing into section 2
-   * - prefers-reduced-motion: if true, show hero at progress 0 with no animation
+   * FIX 3: Inverted Window Reveal
+   * - Layer A (bottom): 01_home_hero_clean.png in full natural colour, no filter
+   * - Layer B (top): Warm grey filter revealed through clip-path inset window
+   * - Window: at scroll 0 is at left 40%, top 38%, width 20%, height 24% (inset(38% 40% 38% 40%))
+   *   with 1px cream #F6EFE4 outline.
+   * - 0.00 - 0.12: window holds its small size
+   * - 0.12 - 0.88: window expands from small rectangle to full frame (easing out)
+   * - 0.12 - 0.88: cream outline travels with window edges and fades to 0 opacity by 0.88
+   * - 0.60 - 0.90: text layer and CTA fade 1 to 0 and translate up 40px
+   * - 0.90 - 1.00: hero sticky container fades out from 1 to 0 and releases sticky container
+   * - prefers-reduced-motion: static full-colour plate with text visible
    */
   function setupHeroScrollAnimation() {
     const heroScroll = document.getElementById('heroScroll');
     const heroSticky = document.getElementById('heroSticky');
-    const heroPlateLayer = document.getElementById('heroPlateLayer');
-    const heroShadowOverlay = document.getElementById('heroShadowOverlay');
+    const layerB = document.getElementById('layerB');
+    const windowOutline = document.getElementById('windowOutline');
     const heroTextLayer = document.getElementById('heroTextLayer');
     const heroCtaWrapper = document.getElementById('heroCtaWrapper');
 
-    if (!heroScroll || !heroSticky || !heroPlateLayer || !heroShadowOverlay) return;
+    if (!heroScroll || !heroSticky || !layerB || !windowOutline) return;
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReducedMotion) {
-      if (typeof gsap !== 'undefined') {
-        gsap.set(heroPlateLayer, { scale: 1.12, yPercent: -3 });
-        gsap.set(heroShadowOverlay, { xPercent: -62 });
-        gsap.set([heroTextLayer, heroCtaWrapper], { opacity: 1, y: 0 });
-        gsap.set(heroSticky, { opacity: 1 });
-      }
+      layerB.style.display = 'none';
+      windowOutline.style.display = 'none';
       return;
     }
 
@@ -324,9 +329,10 @@
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // Initial state at progress 0.00
-    gsap.set(heroPlateLayer, { scale: 1.12, yPercent: -3 });
-    gsap.set(heroShadowOverlay, { xPercent: -62 });
+    // Initial state at progress 0.00: window at left 40%, top 38%, width 20%, height 24%
+    const mask = { top: 38, right: 40, bottom: 38, left: 40 };
+    layerB.style.clipPath = 'inset(38% 40% 38% 40%)';
+    gsap.set(windowOutline, { scaleX: 1, scaleY: 1, opacity: 1 });
     gsap.set([heroTextLayer, heroCtaWrapper], { opacity: 1, y: 0 });
     gsap.set(heroSticky, { opacity: 1 });
 
@@ -335,41 +341,42 @@
       defaults: { ease: 'none' }
     });
 
-    // 0.00 - 1.00: Shadow overlay translates from translateX(-62%) to translateX(6%) (linear)
-    tl.to(heroShadowOverlay, {
-      xPercent: 6,
-      duration: 1.0,
-      ease: 'none'
-    }, 0);
+    // 0.12 - 0.88: Window expands from small rectangle to full frame (easing out)
+    tl.to(mask, {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      duration: 0.76,
+      ease: 'power2.out',
+      onUpdate: () => {
+        layerB.style.clipPath = `inset(${mask.top}% ${mask.right}% ${mask.bottom}% ${mask.left}%)`;
+      }
+    }, 0.12);
 
-    // 0.00 - 1.00: Plate translates from translateY(-3%) to translateY(3%) (subtle vertical parallax, linear)
-    tl.to(heroPlateLayer, {
-      yPercent: 3,
-      duration: 1.0,
-      ease: 'none'
-    }, 0);
-
-    // 0.00 - 1.00: Plate scales down from 1.12 to 1.04 (gentle pull-back, ease-out)
-    tl.to(heroPlateLayer, {
-      scale: 1.04,
-      duration: 1.0,
+    // 0.12 - 0.88: Outline travels with window edges and fades to 0 opacity by 0.88
+    tl.to(windowOutline, {
+      scaleX: 5.0,
+      scaleY: 100 / 24, // 4.16667
+      opacity: 0,
+      duration: 0.76,
       ease: 'power2.out'
-    }, 0);
+    }, 0.12);
 
-    // 0.55 - 0.85: Text layer and CTA fade from opacity 1 to 0, and translate up 40px
+    // 0.60 - 0.90: Text layer and CTA fade 1 to 0 and translate up 40px
     tl.to([heroTextLayer, heroCtaWrapper], {
       opacity: 0,
       y: -40,
       duration: 0.30,
       ease: 'power2.out'
-    }, 0.55);
+    }, 0.60);
 
-    // 0.88 - 1.00: Hero sticky container fades out from opacity 1 to 0, releasing into section 2
+    // 0.90 - 1.00: Hero sticky container fades out from 1 to 0, releasing into section 2
     tl.to(heroSticky, {
       opacity: 0,
-      duration: 0.12,
+      duration: 0.10,
       ease: 'power2.out'
-    }, 0.88);
+    }, 0.90);
 
     ScrollTrigger.create({
       trigger: heroScroll,

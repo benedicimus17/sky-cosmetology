@@ -90,23 +90,15 @@ body {
   background-color: var(--color-sand);
 }
 
-/* Layer 1 (bottom): 01_home_hero_clean.png scaled to 112% and centred so parallax never exposes an edge */
-.hero-plate-layer {
+.hero-layer {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform-origin: center center;
-  transform: scale(1.12) translateY(-3%);
-  will-change: transform;
 }
 
-.hero-plate-img {
+.hero-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -114,18 +106,33 @@ body {
   display: block;
 }
 
-/* Layer 2 (middle): Shadow overlay at 115deg gradient, 260% width */
-.hero-shadow-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 260%;
-  height: 100%;
-  background: linear-gradient(115deg, transparent 0%, rgba(74, 51, 39, 0.00) 38%, rgba(74, 51, 39, 0.38) 62%, rgba(74, 51, 39, 0.52) 100%);
-  pointer-events: none;
+/* Layer A, bottom: 01_home_hero_clean.png in FULL NATURAL COLOUR, no filter */
+.hero-layer--a {
+  z-index: 1;
+}
+
+/* Layer B, top: WARM GREY filter, revealed through clip-path inset window */
+.hero-layer--b {
   z-index: 2;
-  transform: translateX(-62%);
-  will-change: transform;
+  filter: sepia(0.55) saturate(0.12) contrast(1.04) brightness(1.02);
+  clip-path: inset(38% 40% 38% 40%);
+  will-change: clip-path;
+}
+
+/* The window: 1px cream #F6EFE4 outline on all four sides */
+.hero-window-outline {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20%;
+  height: 24%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+  border: 1px solid var(--color-cream);
+  box-shadow: 0 0 6px rgba(246, 239, 228, 0.45);
+  pointer-events: none;
+  z-index: 3;
+  will-change: transform, opacity;
 }
 
 .hero-top-bar {
@@ -347,21 +354,14 @@ body {
 .home-section {
   position: relative;
   width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-sand);
 }
 
 .plate-box {
+  width: 100vw;
+  max-width: none;
   aspect-ratio: 572 / 1024;
-  width: 100%;
-  max-width: calc(100vh * 572 / 1024);
-  max-width: calc(100dvh * 572 / 1024);
-  margin-inline: auto;
+  margin-inline: 0;
   position: relative;
   container-type: inline-size;
 }
@@ -448,22 +448,25 @@ body {
 
 .about-fda-text {
   font-family: var(--font-sans);
-  font-size: clamp(8px, 2.0cqi, 11px);
+  font-size: clamp(8px, 1.95cqi, 11px);
   font-weight: 600;
   letter-spacing: 0.22em;
   color: var(--color-deep-brown);
   text-transform: uppercase;
   text-align: center;
   line-height: 1;
+  margin: 0;
+  padding: 0;
 }
 
 /* ==========================================================================
    SECTION 3: EQUIPMENT (plate 03_home_equipment.png)
-   heading         left 8%,  top 8%,   width 70%
-   device band     occupies top 30% to 62% — place nothing there
-   line 1          left 8%,  top 68%,  width 80%
-   line 2          left 8%,  top 76%,  width 80%
-   line 3          left 8%,  top 84%,  width 80%
+   heading     left 8%,  top 8%,   width 70%
+   lead line   left 8%,  top 13%,  width 70%
+   device band occupies top 32% to 64% — place nothing there
+   line 1      left 8%,  top 70%,  width 84%
+   line 2      left 8%,  top 78%,  width 84%
+   line 3      left 8%,  top 86%,  width 84%
    ========================================================================== */
 .equipment-heading-block {
   position: absolute;
@@ -472,63 +475,73 @@ body {
   width: 70%;
 }
 
+.equipment-lead-block {
+  position: absolute;
+  left: 8%;
+  top: 13%;
+  width: 70%;
+}
+
 .equipment-lead {
   font-family: var(--font-serif);
-  font-size: clamp(19px, 5.0cqi, 30px);
+  font-size: clamp(17px, 4.6cqi, 28px);
   font-weight: 400;
   color: var(--color-deep-brown);
   letter-spacing: 0.05em;
-  line-height: 1.2;
-  margin-top: 4px;
+  line-height: 1.15;
+  margin: 0;
 }
 
 .equipment-line {
   position: absolute;
   left: 8%;
-  width: 80%;
+  width: 84%;
   font-family: var(--font-sans);
-  font-size: clamp(8.5px, 2.25cqi, 13px);
+  font-size: clamp(7px, 1.95cqi, 12px);
   color: var(--color-near-black);
-  letter-spacing: 0.03em;
-  line-height: 1.3;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  white-space: nowrap;
 }
 
 .equipment-line--1 {
-  top: 68%;
+  top: 70%;
 }
 
 .equipment-line--2 {
-  top: 76%;
+  top: 78%;
 }
 
 .equipment-line--3 {
-  top: 84%;
+  top: 86%;
 }
 
 /* ==========================================================================
    SECTION 4: PROTOCOLS (plate 04_home_protocols.png)
-   photo panel     left 6% to 56%, top 14% to 78% — place nothing there
-   heading         left 60%, top 34%, width 34%
-   body copy       left 60%, top 42%, width 34%
+   dark photo panel: left 10% to 62%, top 22% to 78% — place nothing there
+   heading    left 8%,  top 82%,  width 84%
+   body copy  left 8%,  top 86%,  width 84%
+   Nothing may sit on the dark panel.
    ========================================================================== */
 .protocols-heading-block {
   position: absolute;
-  left: 60%;
-  top: 34%;
-  width: 34%;
+  left: 8%;
+  top: 82%;
+  width: 84%;
 }
 
 .protocols-body-block {
   position: absolute;
-  left: 60%;
-  top: 42%;
-  width: 34%;
+  left: 8%;
+  top: 86%;
+  width: 84%;
 }
 
 .protocols-body {
-  font-size: clamp(9px, 2.45cqi, 14px);
-  line-height: 1.5;
+  font-size: clamp(8.5px, 2.2cqi, 13px);
+  line-height: 1.45;
   color: var(--color-near-black);
+  margin: 0;
 }
 
 /* ==========================================================================
@@ -733,24 +746,20 @@ body {
     Each zone name and each round button sits over its own card's clear area."
    ========================================================================== */
 .services-page-body {
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
+  width: 100vw;
+  min-height: 100vh;
+  min-height: 100dvh;
   margin: 0;
   padding: 0;
   background-color: var(--color-sand);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .plate-box--services {
+  width: 100vw;
+  max-width: none;
   aspect-ratio: 572 / 1024;
-  width: 100%;
-  max-width: calc(100vh * 572 / 1024);
-  max-width: calc(100dvh * 572 / 1024);
-  margin-inline: auto;
+  margin-inline: 0;
   position: relative;
   container-type: inline-size;
 }
